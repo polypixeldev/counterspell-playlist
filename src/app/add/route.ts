@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   const uri = JSON.stringify(trackRes.body.tracks?.items[0].uri);
   if (process.env.DENY_EXPLICIT === "true") {
     if (trackRes.body.tracks?.items[0].explicit) {
-      return;
+      return Response.json({ status: "explicit" });
     }
   }
 

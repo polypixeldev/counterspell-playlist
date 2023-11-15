@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function Home() {
   const [name, setName] = useState("");
   const [artist, setArtist] = useState("");
-  const [success, setSuccess] = useState<boolean>();
+  const [status, setStatus] = useState<string>();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-16 bg-green-300 p-4 md:p-10">
@@ -55,28 +55,26 @@ export default function Home() {
 
                 const json = await res.json();
 
-                if (json.status == "ok") {
-                  setName("");
-                  setArtist("");
-                  setSuccess(true);
-                } else {
-                  setSuccess(false);
-                }
+                setStatus(json.status);
               } catch {
-                setSuccess(false);
+                setStatus("error");
               }
             }}
           >
             Add
           </button>
         </form>
-        {success === true ? (
+        {status === "ok" ? (
           <p className="text-bold w-full rounded-md bg-green-500 p-4 text-center text-xl">
             Added song!
           </p>
-        ) : success === false ? (
+        ) : status === "error" ? (
           <p className="text-bold w-full rounded-md bg-red-500 p-4 text-center text-xl">
             Error adding song, try again
+          </p>
+        ) : status === "explicit" ? (
+          <p className="text-bold w-full rounded-md bg-red-500 p-4 text-center text-xl">
+            Song is explicit, try again
           </p>
         ) : null}
       </div>
