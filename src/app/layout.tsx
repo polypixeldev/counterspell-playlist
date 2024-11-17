@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Jersey_25 } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const jersey = Jersey_25({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-jersey",
+});
 
 export const metadata: Metadata = {
-  title: "Gaither Hack Club Playlist",
-  description: "Add a song to Gaither Hack Club's Sptoify playlist!",
-  icons: "/gaither.png",
+  title: "Counterspell Playlist",
+  description: "Add a song to Counterspell's Sptoify playlist!",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
@@ -17,7 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`relative ${inter.className} ${jersey.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
