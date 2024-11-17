@@ -11,7 +11,7 @@ const jersey = Jersey_25({
 
 export const metadata: Metadata = {
   title: "Counterspell Playlist",
-  description: "Add a song to Counterspell's Sptoify playlist!",
+  description: "Add a song to Counterspell's Spotify playlist!",
   icons: "/favicon.ico",
 };
 
