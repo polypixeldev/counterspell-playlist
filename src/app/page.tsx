@@ -9,12 +9,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-10 p-4 md:p-10">
-      <div className="bg-sky absolute left-0 top-0 -z-50 h-full w-screen" />
-      <h1 className="bg-board text-pink font-display rounded-2xl border-4 border-black p-5 text-center text-4xl font-semibold shadow-black drop-shadow-xl">
+      <div className="absolute left-0 top-0 -z-50 h-full w-screen bg-sky" />
+      <h1 className="rounded-2xl border-4 border-black bg-board p-5 text-center font-display text-4xl font-semibold text-pink shadow-black drop-shadow-xl">
         Counterspell Playlist
       </h1>
-      <div className="bg-board flex flex-col items-center justify-start gap-4 rounded-xl border-2 border-black p-8 text-white">
-        <h2 className="text-pink font-display text-4xl font-medium">
+      <div className="flex flex-col items-center justify-start gap-4 rounded-xl border-2 border-black bg-board p-8 text-white">
+        <h2 className="font-display text-4xl font-medium text-pink">
           Add a Song
         </h2>
         <form className="flex flex-col items-center justify-between gap-10 md:flex-row md:items-end">
@@ -42,7 +42,7 @@ export default function Home() {
           </div>
           <button
             type="button"
-            className="bg-blue font-display flex aspect-square items-center rounded-lg p-4 text-center text-2xl font-medium"
+            className="flex aspect-square items-center rounded-lg bg-blue p-4 text-center font-display text-2xl font-medium"
             onClick={async () => {
               try {
                 const res = await fetch("/add", {
@@ -74,6 +74,10 @@ export default function Home() {
         ) : status === "error" ? (
           <p className="text-bold w-full rounded-md bg-red-500 p-4 text-center text-xl">
             Error adding song, try again
+          </p>
+        ) : status === "notfound" ? (
+          <p className="text-bold w-full rounded-md bg-red-500 p-4 text-center text-xl">
+            Song not found, try again
           </p>
         ) : status === "explicit" ? (
           <p className="text-bold w-full rounded-md bg-red-500 p-4 text-center text-xl">

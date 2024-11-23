@@ -14,6 +14,10 @@ export async function POST(request: Request) {
   const artist = formData.artist;
 
   const trackRes = await spotify.searchTracks(`track:${name} artist:${artist}`);
+  if (!trackRes.body.tracks?.items[0]?.uri) {
+    return Response.json({ status: "notfound" });
+  }
+
   const uri = JSON.stringify(trackRes.body.tracks?.items[0].uri);
   if (process.env.DENY_EXPLICIT === "true") {
     if (trackRes.body.tracks?.items[0].explicit) {
